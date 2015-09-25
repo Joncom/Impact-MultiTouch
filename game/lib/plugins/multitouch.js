@@ -103,12 +103,20 @@ ig.module( 'plugins.multitouch' )
       e.stopPropagation();
       e.preventDefault();
 
+      var internalWidth = parseInt(ig.system.canvas.offsetWidth) || ig.system.realWidth;
+      var scale = ig.system.scale * (internalWidth / ig.system.realWidth);
+
+      var pos = {left: 0, top: 0};
+      if( ig.system.canvas.getBoundingClientRect ) {
+        pos = ig.system.canvas.getBoundingClientRect();
+      }
+
       for ( var i = e.changedTouches.length; i--; ) {
         var t = e.changedTouches[ i ];
 
         this[ 'multi' + e.type ](
-          (t.clientX - ig.system.canvas.offsetLeft) / ig.system.scale,
-          (t.clientY - ig.system.canvas.offsetTop) / ig.system.scale,
+          (t.clientX - pos.left) / scale,
+          (t.clientY - pos.top) / scale,
           t.identifier
         );
       }
