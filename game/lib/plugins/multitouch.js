@@ -46,6 +46,7 @@ ig.module( 'plugins.multitouch' )
         ig.system.canvas.addEventListener( 'touchstart', this.touchEvent.bind( this ), false );
         ig.system.canvas.addEventListener( 'touchmove', this.touchEvent.bind( this ), false );
         ig.system.canvas.addEventListener( 'touchend', this.touchEvent.bind( this ), false );
+        ig.system.canvas.addEventListener( 'touchcancel', this.touchEvent.bind( this ), false );
       }
     },
 
@@ -149,6 +150,10 @@ ig.module( 'plugins.multitouch' )
           this.delayedKeyup[ action ] = true;
         }
       }
+    },
+
+    multitouchcancel: function( x, y, id ) {
+      this.multitouchend(x, y, id);
     },
 
     _isEmpty: function( obj ) {
