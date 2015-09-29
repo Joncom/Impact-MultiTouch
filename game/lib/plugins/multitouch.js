@@ -70,7 +70,7 @@ ig.module( 'plugins.multitouch' )
         var action = this.bindings[code]
 
         if ( this.actions[action] ) return
-        
+
         if ( this.touches.mouse ) {
           this.touches.mouse.state = 'up';
           this.touches.mouse.x = this.mouse.x;
@@ -96,7 +96,7 @@ ig.module( 'plugins.multitouch' )
       for ( var i = this.delayedTouchUp.length; i--; ) {
         delete this.touches[ ig.input.delayedTouchUp[ i ] ];
       }
-      
+
       this.delayedTouchUp = [];
     },
 
